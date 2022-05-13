@@ -1,10 +1,11 @@
+import GlobalStyle from "./globalStyles";
+
 function App() {
-  return <div>
-    Hello, World
-  
+  return (
+    <div>
+      <GlobalStyle>Hello, World</GlobalStyle>
     </div>
-    
+  );
 }
 
-export default App
-
+export default App;
