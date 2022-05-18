@@ -15,8 +15,7 @@ const Box = styled(motion.div)`
   background-repeat: no-repeat;
   background-size: 100% 2px;
   border: 2px solid;
-  border-color: ${(props) =>
-    props.color === "dark" ? DarkTheme.text : DarkTheme.body};
+  
   z-index: 1;
 `;
 const SubBox = styled.div`
@@ -38,8 +37,7 @@ const SubBox = styled.div`
 
 const Text = styled(motion.div)`
   font-size: calc(0.5em + 1vw);
-  color: ${(props) =>
-    props.color === "dark" ? DarkTheme.text : DarkTheme.body};
+
   padding: 3rem;
   cursor: pointer;
   display: flex;
@@ -59,7 +57,7 @@ const Text = styled(motion.div)`
 const Intro = (props) => {
   return (
     <Box
-      color={props.theme}
+     
       initial={{ height: 0 }}
       animate={{ height: "55vh" }}
       transition={{ type: "spring", duration: 2, delay: 1 }}
@@ -69,9 +67,9 @@ const Intro = (props) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
-          color={props.theme}
+          
         >
-          {console.log(props.theme)}
+          
           <h1>Hi,</h1>
           <h3>My name is Ankita </h3>
           <h6>

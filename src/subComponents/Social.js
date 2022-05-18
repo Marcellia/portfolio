@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Github, Medium, LinkedIn, CV, YinYang } from "../components/AllSvgs";
-import styled from "styled-components";
-import { DarkTheme } from "../components/Themes";
-import { useState } from "react";
+import { Github, Medium, LinkedIn, CV } from "../components/AllSvgs";
+import styled, { useTheme } from "styled-components";
+import { withTheme } from "styled-components";
+
 
 const SocialIcons = styled.div`
   display: flex;
@@ -19,75 +19,63 @@ const SocialIcons = styled.div`
   & > *:not(:last-child) {
     margin: 0.5rem 0;
   }
-`;
+`
 
 const Line = styled.span`
   width: 2px;
   height: 8rem;
-  background-color: ${(props) =>
-    props.color === "dark" ? DarkTheme.text : DarkTheme.body};
-`;
+  background-color: ${({ theme }) => theme.text};
+`
 
-const Social = (props) => {
+
+
+const Social = () => {
+
+  const theme = useTheme()
+
   return (
     <div>
-      <SocialIcons props={props}>
+      <SocialIcons>
         <div>
           <NavLink
-            style={{ color: "inherit" }}
+          style={{ fill: theme.text }}
             target="_blank"
             to={{
               pathname:
                 "https://marcellia.github.io/AnkitaZaveri/Ankita%20Zaveri%20(1).docx.pdf",
             }}
           >
-            <CV
-              width={25}
-              height={25}
-              fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
-            ></CV>
+            <CV  width={25} height={25}></CV>
           </NavLink>
         </div>
         <div>
           <NavLink
-            style={{ color: "inherit" }}
+           style={{ fill: theme.text }}
             target="_blank"
             to={{ pathname: "https://medium.com/@ankitazaveri.dev" }}
           >
-            <Medium
-              width={25}
-              height={25}
-              fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
-            ></Medium>
+            <Medium width={25} height={25}></Medium>
           </NavLink>
         </div>
         <div>
           <NavLink
-            style={{ color: "inherit" }}
+          style={{ fill: theme.text }}
             target="_blank"
             to={{ pathname: "https://github.com/Marcellia" }}
           >
-            <Github
-              width={25}
-              height={25}
-              fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
-            ></Github>
+            <Github width={25} height={25}></Github>
           </NavLink>
         </div>
         <div>
           <NavLink
-            style={{ color: "inherit" }}
+          style={{ fill: theme.text }}
             target="_blank"
             to={{ pathname: "https://www.linkedin.com/in/ankitazaveri/" }}
           >
-            <LinkedIn
-              width={25}
-              height={25}
-              fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body}
-            ></LinkedIn>
+            <LinkedIn width={25} height={25}></LinkedIn>
           </NavLink>
         </div>
-        <Line color={props.theme}></Line>
+        <Line></Line>
       </SocialIcons>
     </div>
   );

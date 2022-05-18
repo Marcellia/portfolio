@@ -1,9 +1,5 @@
-import { DarkTheme, LightTheme } from "./components/Themes";
-import { ThemeProvider } from "styled-components";
-
 import GlobalStyle from "./globalStyles";
-import { Route } from "react-router-dom";
-import { Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import {
   Main,
   AboutPage,
@@ -11,13 +7,35 @@ import {
   MySkillsPage,
   WorkPage,
 } from "./components";
+import styled, { CSS } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { DarkTheme, LightTheme } from "./components/Themes";
+import { useState } from "react";
+import { YinYang } from "./components/AllSvgs";
 
 function App() {
-  return (
-    <div>
-      <GlobalStyle />
+  const [theme, setTheme] = useState([]);
+  const themeToggler = () => {
+    theme === "dark" ? setTheme("light") : setTheme("dark");
+  };
 
-      <ThemeProvider theme={LightTheme}>
+  const Center = styled.div`
+    position: absolute;
+    right:1rem;
+    top:1rem;
+    cursor: pointer;
+    z-index: 3;
+    color: ${({ theme }) => theme.text};
+  `;
+
+  return (
+    <ThemeProvider theme={theme === "dark" ? DarkTheme : LightTheme}>
+      <div>
+        <GlobalStyle />
+        <Center onClick={themeToggler}>
+          <YinYang height="45" width="45"></YinYang>
+        </Center>
+
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/AboutPage" component={AboutPage} />
@@ -25,8 +43,8 @@ function App() {
           <Route exact path="/WorkPage" component={WorkPage} />
           <Route exact path="/MySkillsPage" component={MySkillsPage} />
         </Switch>
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 
